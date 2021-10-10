@@ -36,5 +36,14 @@ module Backend
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # OAuth configuration
+  #config.x.oauth.client_id = "demo-api"
+  #config.x.oauth.client_secret = "cbe52e86-adb0-4acd-b796-155d18abd974"
+  #config.x.oauth.idp_url = "http://localhost:9080/auth"
+  #config.x.oauth.redirect_uri = "http://localhost:3000/auth/callback"
+  #config.x.oauth.hmac = ENV['7f8820b1-0b3d-433f-9e7b-0f271caabdc3']
+
+
   end
 end
