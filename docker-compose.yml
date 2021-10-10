@@ -1,0 +1,32 @@
+version: '2'
+
+volumes:
+  postgres-data:
+      driver: local
+
+services:
+
+  keycloak:
+    extends:
+      file: keycloak.yml
+      service: keycloak
+    depends_on:
+      - postgres
+
+  pgadmin4:
+    extends:
+      file: pgadmin4.yml
+      service: pgadmin4
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
