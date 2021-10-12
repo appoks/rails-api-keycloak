@@ -26,16 +26,27 @@ class NotificationsController < ApplicationController
 
   # PATCH/PUT /notifications/1
   def update
-    if @notification.update(notification_params)
-      render json: @notification
+    can_update = is_papa
+    if can_update
+
+      if @notification.update(notification_params)
+        render json: @notification
+      else
+        render json: @notification.errors, status: :unprocessable_entity
+      end
     else
-      render json: @notification.errors, status: :unprocessable_entity
+      render status: :forbidden
     end
   end
 
   # DELETE /notifications/1
   def destroy
-    @notification.destroy
+    can_update = is_papa
+    if can_update
+      @notification.destroy
+    else
+      render status: :forbidden
+    end
   end
 
   private
